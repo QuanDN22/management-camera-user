@@ -1,0 +1,33 @@
+.body-header {
+  width: 1126px;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.page-title {
+  width: 1026.44px;
+  height: 22px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: left;
+}
+.user-action {
+  width: 128px;
+  height: 38px px;
+  display: flex;
+  justify-content: space-between;
+}
+.user-action-icon {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e0e0e0;
+    border-radius: 50%;
+  }
+}
