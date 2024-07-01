@@ -16,6 +16,7 @@ const SiderBar = ({ open, setOpen }) => {
   useEffect(() => {
     const url = window.location.pathname;
     if (url === "/users") setActiveId(1);
+    if (url === "/search") setActiveId(2);
   }, []);
 
   const handleClick = (id) => {
@@ -55,7 +56,7 @@ const SiderBar = ({ open, setOpen }) => {
   return open ? (
     <div className="siderbar">
       <div className="siderbar-header">
-        <Link to="/products">
+        <Link to="/cameras">
           <div className="header-logo" onClick={() => handleClick(0)}>
             <img src={TtlabLogo} alt="TT Lab Logo" />
           </div>

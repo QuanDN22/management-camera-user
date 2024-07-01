@@ -15,17 +15,17 @@ export default function UserTable({ setIsOpen }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputText, setInputText] = useState("");
-  const [dataLength, setDataLength] = useState(0);
-  const [totalData, setTotalData] = useState(0);
+  // const [dataLength, setDataLength] = useState(0);
+  // const [totalData, setTotalData] = useState(0);
 
   const fetchUsers = useCallback(async () => {
     try {
       const { data } = await callAPI.get(
-        `/users?limit=${limit}&page=${currentPage}`
+        `/auth/users?limit=${limit}&page=${currentPage}`
       );
       const { users: usersData, metadata } = data;
-      setTotalData(metadata.total);
-      setDataLength(metadata.length);
+      // setTotalData(metadata.total);
+      // setDataLength(metadata.length);
       setUsers(usersData);
     } catch (error) {
       alert(error);
@@ -48,7 +48,7 @@ export default function UserTable({ setIsOpen }) {
 
   const handleDelete = async (id) => {
     try {
-      await callAPI.delete(`/users/${id}`);
+      await callAPI.delete(`/auth/users/${id}`);
       fetchUsers();
     } catch (error) {
       alert(error);
@@ -84,14 +84,14 @@ export default function UserTable({ setIsOpen }) {
             ))}
           </tbody>
         </table>
-        <TableFooter
+        {/* <TableFooter
           filteredDataLength={totalData}
           limit={limit}
           handleLimitChange={handleLimitChange}
           handlePagination={handlePagination}
           currentPage={currentPage}
           length={dataLength}
-        />
+        /> */}
       </div>
     </>
   );
@@ -124,10 +124,10 @@ const TableHeader = memo(() => {
   return (
     <thead className="table-head">
       <tr className="table-row-header">
-        <th className="user-avatar">AVATAR</th>
+        <th className="user-avatar">ID</th>
         <th className="user-name">TÊN NGUỜI DÙNG</th>
         <th className="user-email">EMAIL</th>
-        <th className="user-date">NGÀY SINH</th>
+        <th className="user-date">ĐỊA CHỈ</th>
         <th className="user-phone">SỐ ĐIỆN THOẠI</th>
         <th className="user-action">HÀNH ĐỘNG</th>
       </tr>
@@ -177,13 +177,11 @@ const TableFooter = memo(
 function TableRow({ user, handleEdit, handleDelete }) {
   return (
     <tr className="table-row">
-      <td className="user-avatar">
-        <img src={user.user_avatar} alt={"img"} />
-      </td>
-      <td className="user-name">{user.user_name}</td>
-      <td className="user-email">{user.user_email}</td>
-      <td className="user-date">{user.date_of_birth.split("T")[0]}</td>
-      <td className="user-phone">{user.user_phone}</td>
+      <td className="user-avatar">{user.id}</td>
+      <td className="user-name">{user.full_name}</td>
+      <td className="user-email">{user.email}</td>
+      <td className="user-date">{user.address}</td>
+      <td className="user-phone">{user.phone_number}</td>
       <td className="user-action">
         <EditOutlined
           className="action-icon"

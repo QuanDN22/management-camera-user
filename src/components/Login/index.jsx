@@ -13,15 +13,15 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const prevPath = location.state ? location.state.prevPath : "products";
+  const prevPath = location.state ? location.state.prevPath : "/cameras";
   const initialValues = {
-    email: "",
+    username: "",
     password: "",
     rememberMe: false,
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email format").required("Required"),
+    username: Yup.string().required("Required"),
     password: Yup.string().required("Required"),
   });
 
@@ -30,10 +30,11 @@ const LoginForm = () => {
     (async () => {
       try {
         const { data } = await axios.post(
-          "http://localhost:8080/auth/login",
+          "http://localhost:8080/v1/api/auth/login",
           user,
           { withCredentials: true }
         );
+        console.log(data);
         if (data) {
           const { access_token } = data;
           localStorage.setItem("auth_token", access_token);
@@ -41,7 +42,8 @@ const LoginForm = () => {
           navigate(`${prevPath}`);
         }
       } catch (error) {
-        alert(error.response.data.message);
+        console.error(error);
+        alert(error.response.data);
       }
     })();
   };
@@ -61,16 +63,16 @@ const LoginForm = () => {
       >
         <Form>
           <div className="input-group">
-            <label htmlFor="email" className="input-group-label">
-              Email
+            <label htmlFor="username" className="input-group-label">
+              Username
             </label>
             <Field
-              type="email"
+              type="username"
               id="email"
-              name="email"
-              placeholder="Nhập email"
+              name="username"
+              placeholder="Nhập username"
             />
-            <ErrorMessage name="email" component="div" className="error" />
+            <ErrorMessage name="username" component="div" className="error" />
           </div>
           <div className="input-group">
             <label htmlFor="password" className="input-group-label">

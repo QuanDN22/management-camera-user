@@ -5,22 +5,15 @@ import callAPI from "../../utils/callApi";
 // eslint-disable-next-line react/prop-types
 export default function CreateProductForm(setIsOpen) {
   const validationSchema = Yup.object({
-    name: Yup.string().required("Name is required"),
-    price: Yup.number()
-      .typeError("Price must be a number")
-      .required("Price is required"),
-    quantity: Yup.number()
-      .typeError("Quantity must be a number")
-      .required("Quantity is required"),
-    description: Yup.string().required("Description is required"),
-    imageUrl: Yup.string()
-      .url("Invalid URL format")
-      .required("Image URL is required"),
+    camera_name: Yup.string().required("Name is required"),
+    camera_ipv4: Yup.string().required("IP is required"),
+    camera_status: Yup.string().required("Status is required"),
+    camera_position: Yup.string().required("Position is required"),
   });
 
   const handleSubmit = async (values) => {
     try {
-      await callAPI.post("/products", values);
+      await callAPI.post("/cameras", values);
       alert("Them thanh cong");
     } catch (error) {
       console.log(error);
@@ -32,14 +25,13 @@ export default function CreateProductForm(setIsOpen) {
 
   return (
     <div className="create-form">
-      <h2>Tạo mới sản phẩm</h2>
+      <h2>Tạo mới camera</h2>
       <Formik
         initialValues={{
-          name: "",
-          price: "",
-          quantity: 0,
-          description: "",
-          imageUrl: "",
+          camera_name: "",
+          camera_ipv4: "",
+          camera_status: "",
+          camera_position: "",
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -47,50 +39,38 @@ export default function CreateProductForm(setIsOpen) {
         {({ isSubmitting }) => (
           <Form>
             <div className="form-group">
-              <label htmlFor="name">Tên sản phẩm</label>
-              <Field type="text" name="name" />
+              <label htmlFor="camera_name">Name</label>
+              <Field type="text" name="camera_name" />
               <ErrorMessage
-                name="name"
+                name="camera_name"
                 component="div"
                 className="error-message"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="price">Giá sản phẩm</label>
-              <Field type="number" name="price" step="0.01" />
+              <label htmlFor="camera_ipv4">IPv4</label>
+              <Field type="text" name="camera_ipv4" />
               <ErrorMessage
-                name="price"
+                name="camera_ipv4"
                 component="div"
                 className="error-message"
               />
             </div>
-
             <div className="form-group">
-              <label htmlFor="quantity">Số lượng</label>
-              <Field type="number" name="quantity" />
+              <label htmlFor="camera_status">Status</label>
+              <Field type="text" name="camera_status" />
               <ErrorMessage
-                name="quantity"
+                name="camera_status"
                 component="div"
                 className="error-message"
               />
             </div>
-
             <div className="form-group">
-              <label htmlFor="description">Mô tả</label>
-              <Field as="textarea" name="description" rows="4" />
+              <label htmlFor="camera_position">Position</label>
+              <Field type="text" name="camera_position" />
               <ErrorMessage
-                name="description"
-                component="div"
-                className="error-message"
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="imageUrl">Ảnh sản phẩm</label>
-              <Field type="url" name="imageUrl" />
-              <ErrorMessage
-                name="imageUrl"
+                name="camera_position"
                 component="div"
                 className="error-message"
               />

@@ -14,17 +14,18 @@ export default function ProductTable({ setIsOpen }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputText, setInputText] = useState("");
-  const [totalProduct, setTotalProduct] = useState(0);
-  const [dataLength, setDataLength] = useState(0);
+  // const [totalProduct, setTotalProduct] = useState(0);
+  // const [dataLength, setDataLength] = useState(0);
 
   const fetchProducts = useCallback(async () => {
     try {
       const { data } = await callAPI.get(
-        `/products?limit=${limit}&page=${currentPage}`
+        `/cameras?limit=${limit}&page=${currentPage}`
       );
-      const { products: productsData, metadata } = data;
-      setDataLength(metadata.length);
-      setTotalProduct(metadata.total);
+      console.log(data);
+      const { cameras: productsData, metadata } = data;
+      // setDataLength(metadata.length);
+      // setTotalProduct(metadata.total);
       setProducts(productsData);
     } catch (error) {
       alert(error);
@@ -40,7 +41,7 @@ export default function ProductTable({ setIsOpen }) {
   };
 
   const handleDelete = async (id) => {
-    await callAPI.delete(`/products/${id}`);
+    await callAPI.delete(`/cameras/${id}`);
     fetchProducts();
   };
 
@@ -86,41 +87,37 @@ export default function ProductTable({ setIsOpen }) {
         <table>
           <thead className="table-head">
             <tr className="table-row-header">
-              <th className="product-name">Product Name</th>
-              <th className="product-price">Price</th>
-              <th className="product-quantity">Quantity</th>
-              <th className="product-description">Description</th>
-              <th className="product-image">Image</th>
+              <th className="product-name">ID</th>
+              <th className="product-price">Name</th>
+              <th className="product-quantity">IPv4</th>
+              <th className="product-description">Status</th>
+              <th className="product-image">Position</th>
               <th className="product-action">Action</th>
             </tr>
           </thead>
           <tbody>
             {filteredProducts.map((product) => (
-              <tr key={product.product_id} className="table-row">
-                <td className="product-name">{product.product_name}</td>
-                <td className="product-price">{product.product_price}</td>
-                <td className="product-quantity">{product.product_quantity}</td>
-                <td className="product-description">
-                  {product.product_description}
-                </td>
-                <td className="product-image">
-                  <img src={product.product_imageUrl} alt={"img"} />
-                </td>
+              <tr key={product.camera_id} className="table-row">
+                <td className="product-name">{product.camera_id}</td>
+                <td className="product-price">{product.camera_name}</td>
+                <td className="product-quantity">{product.camera_ipv4}</td>
+                <td className="product-description">{product.camera_status}</td>
+                <td className="product-image">{product.camera_position}</td>
                 <td className="product-action">
                   <EditOutlined
                     className="action-icon"
-                    onClick={() => handleEdit(product.product_id)}
+                    onClick={() => handleEdit(product.camera_id)}
                   />
                   <DeleteOutlined
                     className="action-icon"
-                    onClick={() => handleDelete(product.product_id)}
+                    onClick={() => handleDelete(product.camera_id)}
                   />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="footer">
+        {/* <div className="footer">
           <div className="select-number">
             Showing &nbsp;
             <select
@@ -146,7 +143,7 @@ export default function ProductTable({ setIsOpen }) {
             handlePagination={handlePagination}
             currentPage={currentPage}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

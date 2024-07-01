@@ -6,7 +6,6 @@ import Header from "../../components/Header";
 
 export default function ProductPage() {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(Header("Danh sach"));
 
   return (
     <>

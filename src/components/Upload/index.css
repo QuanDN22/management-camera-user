@@ -1,0 +1,34 @@
+.product-list {
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  z-index: 0;
+  width: 100%;
+  padding: 1rem 0;
+  width: 100%;
+}
+.product-list-title {
+  font-family: Integral CF;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 57.6px;
+  text-align: center;
+}
+.product-item {
+  width: 295px;
+  height: 400px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(0.9);
+    box-shadow: 5px 5px 8px rgba(222, 222, 222, 0.362),
+      10px 10px 8px rgba(152, 133, 133, 0.392),
+      15px 15px 8px rgba(139, 154, 139, 0.303);
+  }
+}
+.product-item-title {
+  font-family: Satoshi;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 27px;
+  text-align: left;
+}

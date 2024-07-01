@@ -5,17 +5,24 @@ const data = [
   {
     icon: productIcon,
     id: 0,
-    title: "Sản phẩm",
-    link: "products",
-    description: "QUẢN LÝ SẢN PHẨM",
+    title: "Quản lý Camera",
+    link: "cameras",
+    description: "QUẢN LÝ CAMERA",
   },
 
   {
     icon: employeeIcon,
     id: 1,
-    title: "Users",
+    title: "Quản lý Users",
     link: "users",
     description: "QUẢN LÝ USERS",
+  },
+  {
+    icon: productIcon,
+    id: 2,
+    title: "Tìm kiếm",
+    link: "search",
+    description: "Tìm kiếm",
   },
 ];
 export default data;
