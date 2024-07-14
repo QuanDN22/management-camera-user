@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "./layout/";
+import MyLayout from "./layout/";
 import HomePage from "./page/home-page";
 import ProductPage from "./page/product-page";
 import UserPage from "./page/user-page";
@@ -9,7 +9,7 @@ import LoginForm from "./components/Login";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: <MyLayout />,
     children: [
       {
         index: true,

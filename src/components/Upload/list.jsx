@@ -3,9 +3,9 @@ import { Image, Card } from "antd";
 const { Meta } = Card;
 const App = ({ images }) => (
   <div className="product-list">
-    {images.map((image) => (
+    {images.map((image, index) => (
       <Image.PreviewGroup
-        key={image.id}
+        key={index}
         preview={{
           onChange: (current, prev) =>
             console.log(`current index: ${current}, prev index: ${prev}`),
@@ -17,9 +17,10 @@ const App = ({ images }) => (
           style={{
             boxShadow: "none",
           }}
-          cover={<Image src={image.src} style={{ width: "100%" }} />}
+          cover={<Image src={image.path_to_image} style={{ width: "100%" }} />}
         >
-          <Meta className="product-item-title" title={image.name}></Meta>
+          <Meta className="product-item-title" title={image.time}></Meta>
+          <Meta className="product-item-title" title={image.position}></Meta>
         </Card>
       </Image.PreviewGroup>
     ))}

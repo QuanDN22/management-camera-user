@@ -1,6 +1,6 @@
 .user-table {
   width: 1128px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   margin-bottom: 128px;
 }
@@ -15,7 +15,7 @@
   align-items: center;
   width: 1128px;
   height: 58px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ffffff;
   cursor: pointer;
   margin-bottom: 1px;
 }

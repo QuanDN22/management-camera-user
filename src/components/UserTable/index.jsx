@@ -5,16 +5,19 @@ import {
   EditOutlined,
   DeleteOutlined,
   SearchOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 import "./index.css";
 import Pagination from "../Pagination";
 import callAPI from "../../utils/callApi";
+import { Button, Table } from "antd";
 
 export default function UserTable({ setIsOpen }) {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(5);
   const [inputText, setInputText] = useState("");
+  const [usersData, setUsersData] = useState([]);
   // const [dataLength, setDataLength] = useState(0);
   // const [totalData, setTotalData] = useState(0);
 
@@ -24,6 +27,8 @@ export default function UserTable({ setIsOpen }) {
         `/auth/users?limit=${limit}&page=${currentPage}`
       );
       const { users: usersData, metadata } = data;
+      console.log(usersData);
+      setUsersData(usersData);
       // setTotalData(metadata.total);
       // setDataLength(metadata.length);
       setUsers(usersData);
@@ -66,33 +71,70 @@ export default function UserTable({ setIsOpen }) {
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
-
+  const columns =[
+    {
+      title: 'ID',
+      dataIndex: 'user_id',
+      key: 'id',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'full_name',
+      key: 'full_name',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Phone',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+    },
+  ]
   return (
+    // <>
+    //   <SubHeader handleInputChange={handleInputChange} setIsOpen={setIsOpen} />
+    //   <div className="user-table">
+    //     <table>
+    //       <TableHeader />
+    //       <tbody>
+    //         {filteredData.map((user) => (
+    //           <TableRow
+    //             key={user.user_id}
+    //             user={user}
+    //             handleEdit={handleEdit}
+    //             handleDelete={handleDelete}
+    //           />
+    //         ))}
+    //       </tbody>
+    //     </table>
+    //     {/* <TableFooter
+    //       filteredDataLength={totalData}
+    //       limit={limit}
+    //       handleLimitChange={handleLimitChange}
+    //       handlePagination={handlePagination}
+    //       currentPage={currentPage}
+    //       length={dataLength}
+    //     /> */}
+    //   </div>
+    // </>
     <>
-      <SubHeader handleInputChange={handleInputChange} setIsOpen={setIsOpen} />
-      <div className="user-table">
-        <table>
-          <TableHeader />
-          <tbody>
-            {filteredData.map((user) => (
-              <TableRow
-                key={user.user_id}
-                user={user}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            ))}
-          </tbody>
-        </table>
-        {/* <TableFooter
-          filteredDataLength={totalData}
-          limit={limit}
-          handleLimitChange={handleLimitChange}
-          handlePagination={handlePagination}
-          currentPage={currentPage}
-          length={dataLength}
-        /> */}
+      <div style={{marginBottom: "8px", display: 'flex', flexDirection: 'row-reverse'}}>
+      <Button type="primary" icon={<PlusOutlined />}>Thêm người dùng mới</Button>
       </div>
+      <Table style={{overflow: 'scroll', height: '400px'}} dataSource={usersData} columns={columns}></Table>
     </>
   );
 }
@@ -101,15 +143,15 @@ const SubHeader = memo(({ handleInputChange, setIsOpen }) => {
   return (
     <div className="sub-header">
       <div className="search-bar">
-        <div className="search-icon">
+        {/* <div className="search-icon">
           <SearchOutlined />
-        </div>
-        <input
+        </div> */}
+        {/* <input
           className="search-bar-input"
           type="text"
           placeholder="Tìm kiếm"
           onChange={handleInputChange}
-        />
+        /> */}
       </div>
       <div className="create-btn">
         <button type="primary" onClick={() => setIsOpen(true)}>

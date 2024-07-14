@@ -9,7 +9,6 @@ export default function ProductPage() {
 
   return (
     <>
-      <Header title={"Danh sách người dùng"} />
       <UserTable setIsOpen={setIsOpen} />
       {isOpen && <Modal setIsOpen={setIsOpen} content={CreateUSerForm} />}
     </>

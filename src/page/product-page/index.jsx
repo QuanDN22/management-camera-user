@@ -9,7 +9,6 @@ export default function ProductPage() {
 
   return (
     <>
-      <Header title={"Danh sách sản phẩm"} />
       <ProductTable setIsOpen={setIsOpen} />
       {isOpen && <Modal setIsOpen={setIsOpen} content={CreateProductForm} />}
     </>

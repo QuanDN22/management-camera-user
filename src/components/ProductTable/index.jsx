@@ -3,30 +3,65 @@ import {
   EditOutlined,
   DeleteOutlined,
   SearchOutlined,
+  PlusOutlined
 } from "@ant-design/icons";
 import "./index.css";
 import Pagination from "../Pagination";
 import callAPI from "../../utils/callApi";
+import { Button, Space, Table } from "antd";
 
 // eslint-disable-next-line react/prop-types
 export default function ProductTable({ setIsOpen }) {
   const [products, setProducts] = useState([]);
+  const [cameras, setCameras] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [inputText, setInputText] = useState("");
-  // const [totalProduct, setTotalProduct] = useState(0);
-  // const [dataLength, setDataLength] = useState(0);
+
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'camera_id',
+      key: 'camera_id',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'camera_name',
+      key: 'camera_name',
+    },
+    {
+      title: 'IPv4',
+      dataIndex: 'camera_ipv4',
+      key: 'camera_ipv4',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'camera_status',
+      key: 'camera_status',
+    },
+    {
+      title: 'Position',
+      dataIndex: 'camera_position',
+      key: 'camera_position',
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+    },
+  ];
 
   const fetchProducts = useCallback(async () => {
     try {
       const { data } = await callAPI.get(
         `/cameras?limit=${limit}&page=${currentPage}`
       );
-      console.log(data);
-      const { cameras: productsData, metadata } = data;
+      // console.log(data);
+      const { cameras: cameraList, metadata } = data;
       // setDataLength(metadata.length);
       // setTotalProduct(metadata.total);
-      setProducts(productsData);
+      console.log(cameraList);
+      setCameras(cameraList)
     } catch (error) {
       alert(error);
     }
@@ -57,94 +92,12 @@ export default function ProductTable({ setIsOpen }) {
     setInputText(e.target.value.toLowerCase());
   };
 
-  const filteredProducts = inputText
-    ? products.filter((product) =>
-        product.product_name.toLowerCase().includes(inputText)
-      )
-    : products;
-
   return (
     <>
-      <div className="sub-header">
-        <div className="search-bar">
-          <div className="search-icon">
-            <SearchOutlined />
-          </div>
-          <input
-            className="search-bar-input"
-            type="text"
-            placeholder="Search"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="create-btn">
-          <button type="button" onClick={() => setIsOpen(true)}>
-            + Create New
-          </button>
-        </div>
+      <div style={{marginBottom: "8px", display: 'flex', flexDirection: 'row-reverse'}}>
+      <Button type="primary" icon={<PlusOutlined />}>Thêm camera mới</Button>
       </div>
-      <div className="product-table">
-        <table>
-          <thead className="table-head">
-            <tr className="table-row-header">
-              <th className="product-name">ID</th>
-              <th className="product-price">Name</th>
-              <th className="product-quantity">IPv4</th>
-              <th className="product-description">Status</th>
-              <th className="product-image">Position</th>
-              <th className="product-action">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map((product) => (
-              <tr key={product.camera_id} className="table-row">
-                <td className="product-name">{product.camera_id}</td>
-                <td className="product-price">{product.camera_name}</td>
-                <td className="product-quantity">{product.camera_ipv4}</td>
-                <td className="product-description">{product.camera_status}</td>
-                <td className="product-image">{product.camera_position}</td>
-                <td className="product-action">
-                  <EditOutlined
-                    className="action-icon"
-                    onClick={() => handleEdit(product.camera_id)}
-                  />
-                  <DeleteOutlined
-                    className="action-icon"
-                    onClick={() => handleDelete(product.camera_id)}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {/* <div className="footer">
-          <div className="select-number">
-            Showing &nbsp;
-            <select
-              id="number"
-              name="number"
-              required
-              onChange={handleLimitChange}
-              value={limit}
-            >
-              {(dataLength > 5 ? [6, 7, 8, 9, 10] : [dataLength]).map(
-                (value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                )
-              )}
-            </select>
-            &nbsp; of {totalProduct}
-          </div>
-          <Pagination
-            length={totalProduct}
-            limit={limit}
-            handlePagination={handlePagination}
-            currentPage={currentPage}
-          />
-        </div> */}
-      </div>
+      <Table dataSource={cameras} columns={columns}></Table>
     </>
   );
 }
