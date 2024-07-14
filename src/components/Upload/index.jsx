@@ -97,7 +97,8 @@ const App = () => {
             'Content-Type': 'application/json', // Chỉ định loại dữ liệu là dạng bytes
           },
         });
-        console.log("response: " + response.data.result[0].time)
+        // console.log("response: " + response.data.result[0].time)
+        console.log(response.data.result)
         setUploadResponse(response.data.message); // Giả sử server trả về một chuỗi
         setImages(response.data.result);
       } catch (error) {

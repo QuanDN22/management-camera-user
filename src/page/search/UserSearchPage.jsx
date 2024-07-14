@@ -6,20 +6,21 @@ import { Navigate, useLocation } from "react-router-dom";
 export default function UserSearchPage() {
   const accessToken = useSelector((state) => state.auths.accessToken);
   const location = useLocation();
-  let role;
-  if (accessToken) {
-    role = jwtDecode(accessToken);
-  }
+  const role = useSelector((state) => state.auths.role);
   console.log(!accessToken);
-  return !accessToken ? (
-    <Navigate
-      to="/auth/login"
-      replace
-      state={{ prevPath: location.pathname }}
-    />
-  ) : role === "admin" ? (
-    <Navigate to="/" replace />
-  ) : (
-    <Upload />
-  );
+  if(!accessToken){
+    return (
+      <Navigate
+        to="/auth/login"
+        replace
+        state={{ prevPath: location.pathname }}
+      />
+    )
+  }else {
+    if(role === "admin"){
+      return <Navigate to="/" replace />
+    }else{
+      return <Upload />
+    }
+  }
 }
