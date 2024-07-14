@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import MyLayout from "./layout/MyLayout";
 import HomePage from "./page/home/HomePage";
-import ProductPage from "./page/product/ProductPage";
 import UserPage from "./page/user/UserPage";
 import SearchPage from "./page/search/SearchPage";
 import LoginForm from "./components/Login";
+import CameraPage from "./page/camera/CameraPage";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cameras",
-        element: <ProductPage />,
+        element: <CameraPage />,
       },
       { path: "/users", element: <UserPage /> },
       { path: "/search", element: <SearchPage /> },

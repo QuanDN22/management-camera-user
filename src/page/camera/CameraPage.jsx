@@ -1,10 +1,10 @@
 import { useState } from "react";
-import CreateProductForm from "../../components/ProductTable/CreateProductForm";
-import ProductTable from "../../components/ProductTable/ProductTable";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import CreateCameraForm from "../../components/camera/CreateCameraForm";
+import CameraTable from "../../components/camera/CameraTable";
 
-export default function ProductPage() {
+export default function CameraPage() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,9 +16,9 @@ export default function ProductPage() {
           flexDirection: "row-reverse",
         }}
       >
-        <CreateProductForm />
+        <CreateCameraForm />
       </div>
-      <ProductTable setIsOpen={setIsOpen} />
+      <CameraTable setIsOpen={setIsOpen} />
     </>
   );
 }

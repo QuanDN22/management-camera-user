@@ -4,7 +4,7 @@ import callAPI from "../../utils/callApi";
 import { Button, Table } from "antd";
 
 // eslint-disable-next-line react/prop-types
-export default function ProductTable({ setIsOpen }) {
+export default function CameraTable({ setIsOpen }) {
   const [products, setProducts] = useState([]);
   const [cameras, setCameras] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
