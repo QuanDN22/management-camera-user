@@ -1,14 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import {
-  EditOutlined,
-  DeleteOutlined,
-  SearchOutlined,
-  PlusOutlined
-} from "@ant-design/icons";
-import "./index.css";
-import Pagination from "../Pagination";
+import { PlusOutlined } from "@ant-design/icons";
 import callAPI from "../../utils/callApi";
-import { Button, Space, Table } from "antd";
+import { Button, Table } from "antd";
 
 // eslint-disable-next-line react/prop-types
 export default function ProductTable({ setIsOpen }) {
@@ -20,34 +13,34 @@ export default function ProductTable({ setIsOpen }) {
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'camera_id',
-      key: 'camera_id',
+      title: "ID",
+      dataIndex: "camera_id",
+      key: "camera_id",
     },
     {
-      title: 'Name',
-      dataIndex: 'camera_name',
-      key: 'camera_name',
+      title: "Name",
+      dataIndex: "camera_name",
+      key: "camera_name",
     },
     {
-      title: 'IPv4',
-      dataIndex: 'camera_ipv4',
-      key: 'camera_ipv4',
+      title: "IPv4",
+      dataIndex: "camera_ipv4",
+      key: "camera_ipv4",
     },
     {
-      title: 'Status',
-      dataIndex: 'camera_status',
-      key: 'camera_status',
+      title: "Status",
+      dataIndex: "camera_status",
+      key: "camera_status",
     },
     {
-      title: 'Position',
-      dataIndex: 'camera_position',
-      key: 'camera_position',
+      title: "Position",
+      dataIndex: "camera_position",
+      key: "camera_position",
     },
     {
-      title: 'Action',
-      dataIndex: 'action',
-      key: 'action',
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
     },
   ];
 
@@ -61,7 +54,7 @@ export default function ProductTable({ setIsOpen }) {
       // setDataLength(metadata.length);
       // setTotalProduct(metadata.total);
       console.log(cameraList);
-      setCameras(cameraList)
+      setCameras(cameraList);
     } catch (error) {
       alert(error);
     }
@@ -92,12 +85,5 @@ export default function ProductTable({ setIsOpen }) {
     setInputText(e.target.value.toLowerCase());
   };
 
-  return (
-    <>
-      <div style={{marginBottom: "8px", display: 'flex', flexDirection: 'row-reverse'}}>
-      <Button type="primary" icon={<PlusOutlined />}>Thêm camera mới</Button>
-      </div>
-      <Table dataSource={cameras} columns={columns}></Table>
-    </>
-  );
+  return <Table dataSource={cameras} columns={columns}></Table>;
 }

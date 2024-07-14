@@ -4,10 +4,8 @@ import { useEffect, useState, useCallback, memo } from "react";
 import {
   EditOutlined,
   DeleteOutlined,
-  SearchOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import "./index.css";
 import Pagination from "../Pagination";
 import callAPI from "../../utils/callApi";
 import { Button, Table } from "antd";
@@ -104,37 +102,11 @@ export default function UserTable({ setIsOpen }) {
     },
   ]
   return (
-    // <>
-    //   <SubHeader handleInputChange={handleInputChange} setIsOpen={setIsOpen} />
-    //   <div className="user-table">
-    //     <table>
-    //       <TableHeader />
-    //       <tbody>
-    //         {filteredData.map((user) => (
-    //           <TableRow
-    //             key={user.user_id}
-    //             user={user}
-    //             handleEdit={handleEdit}
-    //             handleDelete={handleDelete}
-    //           />
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //     {/* <TableFooter
-    //       filteredDataLength={totalData}
-    //       limit={limit}
-    //       handleLimitChange={handleLimitChange}
-    //       handlePagination={handlePagination}
-    //       currentPage={currentPage}
-    //       length={dataLength}
-    //     /> */}
-    //   </div>
-    // </>
     <>
       <div style={{marginBottom: "8px", display: 'flex', flexDirection: 'row-reverse'}}>
-      <Button type="primary" icon={<PlusOutlined />}>Thêm người dùng mới</Button>
+      <Button type="primary" icon={<PlusOutlined />}>New user</Button>
       </div>
-      <Table style={{overflow: 'scroll', height: '400px'}} dataSource={usersData} columns={columns}></Table>
+      <Table dataSource={usersData} columns={columns}></Table>
     </>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import "./index.css";
 
 import {
   MenuFoldOutlined,
@@ -12,18 +11,17 @@ import {
   BellOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, Typography, theme } from 'antd';
-import Icon from '@ant-design/icons/lib/components/Icon';
 const { Header, Sider, Content } = Layout;
 const MyLayout = () => {
   const navigate = useNavigate();
-  const [header, setHeader] = useState("Quản lý camera");
+  const [header, setHeader] = useState("Camera Management");
   const isAuthenticate = useSelector((state) => state.auths.isAuthenticate);
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  return isAuthenticate ? (
+  return true ? (
     <Layout style={{height: '100vh'}}>
       <Sider 
           style={{borderRadius: '8px'}}
@@ -40,21 +38,21 @@ const MyLayout = () => {
         >
           <Menu.Item key={1} icon={<VideoCameraOutlined />} onClick={()=>{
             navigate("/cameras");
-            setHeader("Quản lý camera");
+            setHeader("Camera Management");
           }}>
-            Quản lý camera
+            Cameras
           </Menu.Item>
           <Menu.Item key={2} icon={<UserOutlined />} onClick={()=>{
             navigate("/users");
-            setHeader("Quản lý người dùng");
+            setHeader("User management");
           }}>
-            Quản lý người dùng
+            Users
           </Menu.Item>
           <Menu.Item key={3} icon={<UploadOutlined />} onClick={()=>{
             navigate("/search");
-            setHeader("Tìm kiếm");
+            setHeader("Search");
           }}>
-            Tìm kiếm
+            Search
           </Menu.Item>
         </Menu>
       </Sider>

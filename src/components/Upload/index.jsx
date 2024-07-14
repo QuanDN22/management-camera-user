@@ -148,7 +148,7 @@ const App = () => {
           )}
         </Upload>
       </Form.Item>
-      <Form.Item label="RangePicker">
+      <Form.Item>
         <RangePicker
           showTime
           format="YYYY-MM-DD HH:mm:ss"
@@ -167,7 +167,7 @@ const App = () => {
             marginTop: 16,
           }}
         >
-          {uploading ? "Đang tìm kiếm" : "Tìm kiếm"}
+          {uploading ? "Searching" : "Search"}
         </Button>
       </Form.Item>
     </Form>
