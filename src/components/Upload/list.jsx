@@ -17,9 +17,9 @@ const App = ({ images }) => (
           style={{
             boxShadow: "none",
           }}
-          cover={<Image src={image.path_to_image} style={{ width: "100%" }} />}
+          cover={<Image src={"http://localhost:3003/" + image.frame} style={{ width: "100%" }} />}
         >
-          <Meta className="product-item-title" title={image.time}></Meta>
+          <Meta className="product-item-title" title={image.timestamp}></Meta>
           <Meta className="product-item-title" title={image.position}></Meta>
         </Card>
       </Image.PreviewGroup>
