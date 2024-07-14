@@ -44,115 +44,6 @@ export default function CameraTable() {
     },
   ];
 
-  const fakeData = [
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-    {
-      camera_id: 1,
-      camera_name: "camera 1",
-      camera_ipv4: "192.168.1.1",
-      camera_status: "online",
-      camera_position: "abc"
-    },
-
-  ]
-
   const fetchProducts = useCallback(async () => {
     try {
       const { data } = await callAPI.get(
@@ -194,5 +85,5 @@ export default function CameraTable() {
     setInputText(e.target.value.toLowerCase());
   };
 
-  return <Table dataSource={fakeData} columns={columns}></Table>;
+  return <Table dataSource={cameras} columns={columns}></Table>;
 }
