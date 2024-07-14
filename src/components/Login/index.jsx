@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateAuthenticate } from "../../slice/authsSlice";
 import "./index.css";
-import { jwtDecode } from "jwt-decode";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);

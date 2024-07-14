@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Outlet, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { jwtDecode } from "jwt-decode";
 import {
   UploadOutlined,
   UserOutlined,
@@ -45,7 +44,9 @@ const MyLayout = () => {
             collapsed={collapsed}
             breakpoint="lg"
           >
-            <div className="demo-logo-vertical" />
+            <div className="demo-logo-vertical">
+              <img src="/ttlab-logo.svg" alt="logo" />
+            </div>
             <Menu
               style={{ borderRadius: "8px" }}
               theme="dark"

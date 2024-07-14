@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import Upload from "../../components/Upload";
-import { jwtDecode } from "jwt-decode";
 import { Navigate, useLocation } from "react-router-dom";
 
 export default function UserSearchPage() {
