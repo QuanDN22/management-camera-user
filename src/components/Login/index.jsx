@@ -37,8 +37,8 @@ const LoginForm = () => {
         console.log(data);
         if (data) {
           const { access_token } = data;
-          localStorage.setItem("auth_token", access_token);
-          dispatch(updateAuthenticate(true));
+          localStorage.setItem("access_token", access_token);
+          dispatch(updateAuthenticate({accessToken: access_token}));
           navigate(`${prevPath}`);
         }
       } catch (error) {

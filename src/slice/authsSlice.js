@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const authToken = localStorage.getItem("auth_token");
-const initialState = { isAuthenticate: !!authToken };
+const accessToken = localStorage.getItem("access_token");
+const initialState = { accessToken: accessToken };
 
 const authsSlice = createSlice({
   name: "auths",
   initialState,
   reducers: {
     updateAuthenticate(state, action) {
-      state.isAuthenticate = action.payload;
+      state.accessToken = action.payload.accessToken;
     },
   },
 });

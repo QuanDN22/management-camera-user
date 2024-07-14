@@ -69,16 +69,28 @@ const CreateUserForm = () => {
         )}
       >
         <Form.Item
-          name="name"
-          label="Name"
+          name="username"
+          label="Username"
           rules={[
             {
               required: true,
-              message: "Please input user's name!",
+              message: "Please input username!",
             },
           ]}
         >
-          <Input />
+          <Input type="textarea"/>
+        </Form.Item>
+        <Form.Item
+          name="password"
+          label="Password"
+          rules={[
+            {
+              required: true,
+              message: "Please input password!",
+            },
+          ]}
+        >
+          <Input type="textarea"/>
         </Form.Item>
         <Form.Item
           name="email"
@@ -97,12 +109,15 @@ const CreateUserForm = () => {
         >
           <Input type="textarea" />
         </Form.Item>
+        <Form.Item name="full_name" label="Fullname">
+          <Input type="textarea" />
+        </Form.Item>
         <Form.Item name="address" label="Address">
           <Input type="textarea" />
         </Form.Item>
         <Form.Item
-          name="phone"
-          label="Phone"
+          name="phone_number"
+          label="Phone Number"
           validateFirst
           rules={[{ pattern: /^[0-9]*$/, message: "Invalid phone number!" }]}
         >

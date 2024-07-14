@@ -1,27 +1,34 @@
 import React, { useState } from "react";
 import { Outlet, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { jwtDecode } from "jwt-decode";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
   BellOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, Typography, theme } from "antd";
+import SearchPage from "../page/search/SearchPage";
 const { Header, Sider, Content } = Layout;
 const MyLayout = () => {
   const navigate = useNavigate();
   const [header, setHeader] = useState("Camera Management");
-  const isAuthenticate = useSelector((state) => state.auths.isAuthenticate);
+  const accessToken = useSelector((state) => state.auths.accessToken);
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  return true ? (
+  let role;
+  if(accessToken){
+    role = jwtDecode(accessToken);
+  }
+  return !accessToken ? (<Navigate
+    to="/auth/login"
+    replace
+    state={{ prevPath: location.pathname }}
+  />) : role==="admin" ? (
     <Layout hasSider>
       <Sider
         style={{
@@ -143,11 +150,7 @@ const MyLayout = () => {
       </Layout>
     </Layout>
   ) : (
-    <Navigate
-      to="/auth/login"
-      replace
-      state={{ prevPath: location.pathname }}
-    />
-  );
+    <SearchPage />
+  )
 };
 export default MyLayout;
