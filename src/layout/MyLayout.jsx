@@ -45,7 +45,7 @@ const MyLayout = () => {
             breakpoint="lg"
           >
             <div className="demo-logo-vertical">
-              <img src="/ttlab-logo.svg" alt="logo" />
+              <img src="/ttlab-logo-white.svg" alt="logo" />
             </div>
             <Menu
               style={{ borderRadius: "8px" }}

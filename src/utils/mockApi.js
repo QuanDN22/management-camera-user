@@ -1,0 +1,5 @@
+const api = () => {
+  return {
+    access_token: "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcGkiLCJleHAiOjE3MjA5NzUwNzUsImlhdCI6MTcyMDk3MTQ3NSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAxIiwibmJmIjoxNzIwOTcxNDc1LCJyb2xlcyI6ImFkbWluIiwidXNlcm5hbWUiOiJhZG1pbjEifQ.yaFP5RcqFFIx8iRx8h2MKsi8hHIXVRF3Uo1rhphjekEZIVS64RG2XW-1dYlSdfk-EkDKQzzN2ny3PZmtWGdXBA"
+  }
+}
