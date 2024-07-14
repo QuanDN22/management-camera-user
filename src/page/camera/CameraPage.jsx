@@ -5,7 +5,6 @@ import CreateCameraForm from "../../components/camera/CreateCameraForm";
 import CameraTable from "../../components/camera/CameraTable";
 
 export default function CameraPage() {
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -18,7 +17,7 @@ export default function CameraPage() {
       >
         <CreateCameraForm />
       </div>
-      <CameraTable setIsOpen={setIsOpen} />
+      <CameraTable />
     </>
   );
 }

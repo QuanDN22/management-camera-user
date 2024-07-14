@@ -4,7 +4,7 @@ import callAPI from "../../utils/callApi";
 import { Button, Table } from "antd";
 
 // eslint-disable-next-line react/prop-types
-export default function CameraTable({ setIsOpen }) {
+export default function CameraTable() {
   const [products, setProducts] = useState([]);
   const [cameras, setCameras] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,6 +43,115 @@ export default function CameraTable({ setIsOpen }) {
       key: "action",
     },
   ];
+
+  const fakeData = [
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+    {
+      camera_id: 1,
+      camera_name: "camera 1",
+      camera_ipv4: "192.168.1.1",
+      camera_status: "online",
+      camera_position: "abc"
+    },
+
+  ]
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -85,5 +194,5 @@ export default function CameraTable({ setIsOpen }) {
     setInputText(e.target.value.toLowerCase());
   };
 
-  return <Table dataSource={cameras} columns={columns}></Table>;
+  return <Table dataSource={fakeData} columns={columns}></Table>;
 }
