@@ -21,14 +21,16 @@ const MyLayout = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   let role;
-  if(accessToken){
+  if (accessToken) {
     role = jwtDecode(accessToken);
   }
-  return !accessToken ? (<Navigate
-    to="/auth/login"
-    replace
-    state={{ prevPath: location.pathname }}
-  />) : role==="admin" ? (
+  return !accessToken ? (
+    <Navigate
+      to="/auth/login"
+      replace
+      state={{ prevPath: location.pathname }}
+    />
+  ) : role === "admin" ? (
     <Layout hasSider>
       <Sider
         style={{
@@ -150,7 +152,7 @@ const MyLayout = () => {
       </Layout>
     </Layout>
   ) : (
-    <SearchPage />
-  )
+    <Navigate to="/u" replace state={{ prevPath: location.pathname }} />
+  );
 };
 export default MyLayout;

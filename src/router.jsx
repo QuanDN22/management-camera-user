@@ -5,6 +5,7 @@ import UserPage from "./page/user/UserPage";
 import SearchPage from "./page/search/SearchPage";
 import LoginForm from "./components/Login";
 import CameraPage from "./page/camera/CameraPage";
+import UserSearchPage from "./page/search/UserSearchPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
     path: "/auth/login",
     element: <LoginForm />,
   },
+  {
+    path: "/u",
+    element: <UserSearchPage />
+  }
 ]);
 
 export default router;
