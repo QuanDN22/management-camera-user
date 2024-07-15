@@ -1,31 +1,46 @@
 import React, { useState } from "react";
 import { Outlet, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
   BellOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, Typography, theme } from "antd";
-import SearchPage from "../page/search/SearchPage";
+import { Button, Dropdown, Layout, Menu, Typography, theme } from "antd";
+import { updateAuthenticate } from "../slice/authsSlice";
 const { Header, Sider, Content } = Layout;
-const MyLayout = () => {
+const AdminLayout = () => {
   const navigate = useNavigate();
   const [header, setHeader] = useState("Camera Management");
   const accessToken = useSelector((state) => state.auths.accessToken);
   const role = useSelector((state) => state.auths.role);
+  const dispatch = useDispatch();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const handleMenuClick = (e) => {
+    if (e.key === "1") {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("role");
+      dispatch(updateAuthenticate({accessToken: undefined, role: undefined}));
+      navigate("/auth/login");
+    }
+  };
+  const menuProps = {
+    items: [{ key: "1", label: "Logout" }],
+    onClick: handleMenuClick,
+  };
   if (!accessToken) {
-    return <Navigate
-      to="/auth/login"
-      replace
-      state={{ prevPath: location.pathname }}
-    />
+    return (
+      <Navigate
+        to="/auth/login"
+        replace
+        state={{ prevPath: location.pathname }}
+      />
+    );
   } else {
     if (role === "admin") {
       return (
@@ -120,15 +135,17 @@ const MyLayout = () => {
                       height: 64,
                     }}
                   />
-                  <Button
-                    type="text"
-                    icon={<UserOutlined />}
-                    style={{
-                      fontSize: "16px",
-                      width: 64,
-                      height: 64,
-                    }}
-                  />
+                  <Dropdown menu={menuProps} trigger={["click"]}>
+                    <Button
+                      type="text"
+                      icon={<UserOutlined />}
+                      style={{
+                        fontSize: "16px",
+                        width: 64,
+                        height: 64,
+                      }}
+                    />
+                  </Dropdown>
                 </div>
               </div>
             </Header>
@@ -151,7 +168,7 @@ const MyLayout = () => {
             </Content>
           </Layout>
         </Layout>
-      )
+      );
     } else {
       return (
         <Navigate to="/u" replace state={{ prevPath: location.pathname }} />
@@ -159,4 +176,4 @@ const MyLayout = () => {
     }
   }
 };
-export default MyLayout;
+export default AdminLayout;
