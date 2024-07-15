@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -9,6 +9,8 @@ import {
   DatePicker,
   TimePicker,
   Collapse,
+  InputNumber,
+  Checkbox,
 } from "antd";
 const { RangePicker } = DatePicker;
 import ListImage from "../../components/Upload/list";
@@ -62,6 +64,10 @@ const App = () => {
   const [uploadResponse, setUploadResponse] = useState("");
   const [rangeDate, setRangeDate] = useState(["", ""]);
   const [items, setItems] = useState([]);
+  const [cameraOptions, setCameraOptions] = useState([]);
+  const [checkedCameras, setCheckedCameras] = useState([]);
+  const [numImagesPerCam, setNumImagesPerCam] = useState(5);
+
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -101,6 +107,8 @@ const App = () => {
           start_time: startDate,
           end_time: endDate,
           image: base64String,
+          cameras: checkedCameras,
+          number: numImagesPerCam
         },
         {
           headers: {
@@ -115,7 +123,7 @@ const App = () => {
         return {
           key: index,
           label: item.camera,
-          children:item.image && <ListImage images={item.image} />,
+          children:item.images && <ListImage images={item.images} />,
         };
       });
       setItems(itemList); // Giả sử server trả về một chuỗi
@@ -139,6 +147,24 @@ const App = () => {
     },
     fileList,
   };
+
+  const fetchCameras = useCallback(async () => {
+    try {
+      const { data } = await callAPI.get('/cameras');
+      const { cameras: cameraList, metadata } = data;
+      console.log(cameraList);
+      const cameraOptionList = cameraList.map((item, index) => {
+        return { label: item.camera_name, value: {ipv4: item.camera_ipv4}, key: item.camera_id}
+      })
+      setCameraOptions(cameraOptionList);
+    } catch (error) {
+      alert(error);
+    }
+  }, []);
+
+  useEffect(()=>{
+    fetchCameras()
+  }, []);
 
   return (
     <>
@@ -175,6 +201,12 @@ const App = () => {
               setRangeDate(dateString);
             }}
           />
+        </Form.Item>
+        <Form.Item label="Number images per camera">
+          <InputNumber value={numImagesPerCam} onChange={(value)=>setNumImagesPerCam(value)}/>
+        </Form.Item>
+        <Form.Item>
+          <Checkbox.Group options={cameraOptions} value={checkedCameras} onChange={(list)=>{setCheckedCameras(list);}}/>
         </Form.Item>
         <Form.Item>
           <Button

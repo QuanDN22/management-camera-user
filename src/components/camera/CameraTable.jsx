@@ -49,10 +49,7 @@ export default function CameraTable() {
       const { data } = await callAPI.get(
         `/cameras?limit=${limit}&page=${currentPage}`
       );
-      // console.log(data);
       const { cameras: cameraList, metadata } = data;
-      // setDataLength(metadata.length);
-      // setTotalProduct(metadata.total);
       console.log(cameraList);
       setCameras(cameraList);
     } catch (error) {
