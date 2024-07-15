@@ -101,6 +101,13 @@ const App = () => {
     // const bytes = new Uint8Array(base64String);
     // Gửi dữ liệu lên server
     try {
+      console.log({
+        start_time: startDate,
+        end_time: endDate,
+        image: base64String,
+        cameras: checkedCameras,
+        number: numImagesPerCam
+      });
       const response = await callAPI.post(
         "/image-processing",
         {
@@ -154,7 +161,7 @@ const App = () => {
       const { cameras: cameraList, metadata } = data;
       console.log(cameraList);
       const cameraOptionList = cameraList.map((item, index) => {
-        return { label: item.camera_name, value: {ipv4: item.camera_ipv4}, key: item.camera_id}
+        return { label: item.camera_name, value: item.camera_ipv4, key: item.camera_id}
       })
       setCameraOptions(cameraOptionList);
     } catch (error) {
