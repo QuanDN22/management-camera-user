@@ -20,7 +20,7 @@ const App = ({ images }) => (
           cover={<Image src={"http://localhost:3003/" + image.frame} style={{ width: "100%" }} />}
         >
           <Meta className="product-item-title" title={image.timestamp}></Meta>
-          <Meta className="product-item-title" title={image.position}></Meta>
+          {/* <Meta className="product-item-title" title={image.position}></Meta> */}
         </Card>
       </Image.PreviewGroup>
     ))}

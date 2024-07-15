@@ -24,7 +24,7 @@ const CreateUserForm = () => {
     console.log("Received values of form: ", values);
     setConfirmLoading(true);
     try {
-      await callAPI.post("/users", values);
+      await callAPI.post("/auth/users", values);
       alertSuccess();
     } catch (error) {
       console.error("Create user failed: ", error);
